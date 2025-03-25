@@ -89,7 +89,6 @@
     }
     
     .carousel {
-      max-inline-size: 80cqi;
       overscroll-behavior-x: contain;
       scroll-behavior: smooth;
     }
@@ -100,12 +99,27 @@
       gap: 1em;
       padding: 0;
       margin: 0;
+      height:17em;
   
       > li {
         list-style-type: none;
         background-color:aliceblue;
-        /* border: 3px solid #888; */
+        border: 2px solid aliceblue;
+        border-radius: 2em;
         height:15em;
+        display: flex;
+        align-items: center;
       }
     }
   }
+
+  h2 {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+p{
+
+}
+

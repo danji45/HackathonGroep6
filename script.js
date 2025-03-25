@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const people = data.data;
 
             people.forEach(person => {
+
+
+                
                 // Create a new list item with an ID based on the person's name
                 const listItem = document.createElement('li');
                 listItem.id = `id-${person.name.toLowerCase().replace(/\s+/g, '-')}`;

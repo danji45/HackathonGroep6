@@ -36,6 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 workParagraph.textContent = `Works at: ${person.work}`;
                 listItem.appendChild(workParagraph);
 
+                const countryParagraph = document.createElement('p');
+                countryParagraph.textContent = `Comes from: ${person.country}`;
+                listItem.appendChild(countryParagraph);
+
                 // Optional: Add social links
                 const linkContainer = document.createElement('div');
                 linkContainer.classList.add('social-links');

@@ -14,6 +14,7 @@ var persoon = `
 <section>
 <h2>${person.name}</h2>
 <p>${person.tagline}</p>
+<p>Comes from: ${person.country}</p>
 </section>
 </li>
 

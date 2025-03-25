@@ -113,6 +113,7 @@
         height:13em;
         display: flex;
         align-items: center;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
       }
     }
   }
@@ -140,13 +141,18 @@ img{
 h2 {
   font-weight: bold;
   font-size: 20px;
-  margin-bottom:-0.2em;
+  margin-top:0em;
   width: 100%;
-  
 }
 
 p{
   width:10em;
+  margin-top:-0.1em;
 }
 
+p:nth-of-type(2){
+  font-size:12px;
+  width:15em;
+  color: rgb(108, 149, 185);
+}
 

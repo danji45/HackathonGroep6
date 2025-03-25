@@ -1,106 +1,76 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const carouselList = document.getElementById('carousel-list');
+
     fetch('https://fdnd.directus.app/items/women_in_tech')
         .then(response => response.json())
         .then(data => {
             const people = data.data;
 
-            // loop voor elk persoon
             people.forEach(person => {
-                console.log('Persoon:', person); // log hele persoon debug
+                // Create a new list item with an ID based on the person's name
+                const listItem = document.createElement('li');
+                listItem.id = `id-${person.name.toLowerCase().replace(/\s+/g, '-')}`;
 
+                // Create and set up profile image
+                const profileImage = document.createElement('img');
+                profileImage.classList.add('profile-image');
+                profileImage.src = `https://fdnd.directus.app/assets/${person.image}`;
+                profileImage.alt = `Profile of ${person.name}`;
+                listItem.appendChild(profileImage);
 
-                
+                // Create name heading
+                const nameHeading = document.createElement('h2');
+                nameHeading.textContent = person.name;
+                listItem.appendChild(nameHeading);
 
-                // laat de naam van de persoon zien.
-                console.log(person.name);
-                const naamElement = document.getElementById("naam");
-                naamElement.textContent = `${person.name}`;
+                // Create tagline paragraph
+                const taglineParagraph = document.createElement('p');
+                taglineParagraph.textContent = person.tagline;
+                listItem.appendChild(taglineParagraph);
 
-                // laat de tagline van de persoon zien.
-                console.log(person.tagline);
-                const taglineElement = document.getElementById("tagline");
-                taglineElement.textContent = `Tagline: ${person.tagline}`;
+                // Optional: Add additional details
+                const workParagraph = document.createElement('p');
+                workParagraph.textContent = `Works at: ${person.work}`;
+                listItem.appendChild(workParagraph);
 
-                // laat de categorie van de persoon zien.
-                console.log(person.period);
-                const categorieElement = document.getElementById("categorie");
-                categorieElement.textContent = `${person.period}`;
+                // Optional: Add social links
+                const linkContainer = document.createElement('div');
+                linkContainer.classList.add('social-links');
 
-                // laat de werk van de persoon zien.
-                console.log(person.work);
-                const werkElement = document.getElementById("werk");
-                werkElement.textContent = `Works at: ${person.work}`;
-
-
-                // laat de afbeelding van de persoon zien.
-                console.log(person.image);
-                const imageUrl = `https://fdnd.directus.app/assets/${person.image}`;
-                
-                const imageElement = document.getElementById("image");
-                imageElement.src = imageUrl;  // Zorgt ervoor dat de afbeelding correct wordt weergegeven
-
-
-                // laat de github van de persoon zien.
-                console.log(person.github);
-                const githubUrl = person.github;  // Zorg ervoor dat dit een geldige URL is
-                
-                const githubElement = document.getElementById("github-link");
-                if (githubUrl) {
-                    githubElement.href = githubUrl;
-                    githubElement.target = "_blank";  // Opent de link in een nieuw tabblad
-                } else {
-                    console.error("Geen geldige GitHub-URL gevonden!");
+                // GitHub link
+                if (person.github) {
+                    const githubLink = document.createElement('a');
+                    githubLink.href = person.github;
+                    githubLink.textContent = 'GitHub';
+                    githubLink.target = '_blank';
+                    linkContainer.appendChild(githubLink);
                 }
 
-
-                // laat de codepen van de persoon zien.
-                console.log(person.codepen);
-                const codepenUrl = person.codepen;  // Zorg ervoor dat dit een geldige URL is
-                
-                const codepenElement = document.getElementById("codepen-link");
-                if (codepenUrl) {
-                    codepenElement.href = codepenUrl;
-                    codepenElement.target = "_blank";  // Opent de link in een nieuw tabblad
-                } else {
-                    console.error("Geen geldige codepen-URL gevonden!");
+                // CodePen link
+                if (person.codepen) {
+                    const codepenLink = document.createElement('a');
+                    codepenLink.href = person.codepen;
+                    codepenLink.textContent = 'CodePen';
+                    codepenLink.target = '_blank';
+                    linkContainer.appendChild(codepenLink);
                 }
 
-                
-                // laat de website van de persoon zien.
-                console.log(person.website);
-                const websiteUrl = person.website;  // Zorg ervoor dat dit een geldige URL is
-                
-                const websiteElement = document.getElementById("website-link");
-                if (websiteUrl) {
-                    websiteElement.href = websiteUrl;
-                    websiteElement.target = "_blank";  // Opent de link in een nieuw tabblad
-                } else {
-                    console.error("Geen geldige website-URL gevonden!");
-                }
-                
-                
-
-                const countryCode = person.country?.trim(); // landen-ID ophalen
-
-                if (!countryCode) {
-                    console.warn(`Geen landcode gevonden voor ${person.name}`);
-                    return;
+                // Website link
+                if (person.website) {
+                    const websiteLink = document.createElement('a');
+                    websiteLink.href = person.website;
+                    websiteLink.textContent = 'Website';
+                    websiteLink.target = '_blank';
+                    linkContainer.appendChild(websiteLink);
                 }
 
-                const path = document.querySelector(`path[id="${countryCode}"]`);
+                listItem.appendChild(linkContainer);
 
-                if (path) {
-                    console.log(`${person.name} gevonden in ${countryCode}`);
-                    path.style.fill = 'darkgreen'; // tijdelijk: highlight het land
-                } else {
-                    console.warn(`${person.name} heeft land ${countryCode}, maar geen match in SVG`);
-                }
+                // Add the list item to the carousel
+                carouselList.appendChild(listItem);
             });
-
-
-
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('Error fetching data:', error);
         });
 });

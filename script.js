@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
             people.forEach(person => {
                 console.log('Persoon:', person); // log hele persoon debug
 
+
+                
+
                 // laat de naam van de persoon zien.
                 console.log(person.name);
                 const naamElement = document.getElementById("naam");

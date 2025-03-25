@@ -1,0 +1,125 @@
+/* SCROLLER */
+/* horizontal scroll snap */
+.carousel {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    
+    @media (prefers-reduced-motion: no-preference) {
+      scroll-behavior: smooth;
+    }
+    
+    /* snap to center */  
+    & li {
+      scroll-snap-align: center;
+    }
+  }
+  
+  
+  /* SCROLL BUTTONS */
+  /* create buttons by selecting them and adding content */
+  .carousel {
+    &::scroll-button(*) {
+      /* make them round and easy to press */
+      inline-size: 48px;
+      aspect-ratio: 1;
+      border-radius: 1e3px;
+      border: 2px solid #999;
+      
+      /* space from content */
+      margin: 5px;
+    }
+    
+    &::scroll-button(*):focus-visible {
+      outline-offset: 5px;
+    }
+    
+    &::scroll-button(*):not(:disabled):is(:hover, :active) {
+      background-color: Canvas;
+    }
+    
+    &::scroll-button(*):not(:disabled):active {
+      scale: 90%;
+    }
+    
+    &::scroll-button(left) {
+      content: "⬅" / "Scroll Left";
+      grid-area: left; /* place markers in parent grid area */
+    }
+    
+    &::scroll-button(right) {
+      content: "⮕" / "Scroll Right";
+      grid-area: right;
+    }
+  }
+  
+  
+  
+  @layer support.demo {
+    html, body {
+      block-size: 100%;
+    }
+    
+    body {
+      display: grid;
+      place-content: start center;
+      margin: 0;
+      padding: 10vmin;
+    }
+    
+    .scroll-layout {
+      display: grid;
+  /*     border: 1px dashed gray; */
+      
+      /* try a different layout =) */
+      grid-template-areas: 
+        "left scroll right"
+        ". markers .";
+      
+      /* just place items in the grid */
+      grid-template-areas: 
+        "scroll scroll scroll"
+        "left markers right";
+      
+      grid-template-columns: auto 1fr auto;
+  
+      .carousel {
+        grid-area: scroll;
+      }
+    }
+    
+    .carousel {
+      overscroll-behavior-x: contain;
+      scroll-behavior: smooth;
+    }
+  
+    .content {
+      display: grid;
+      grid: 50vmin / auto-flow 50vmin;
+      gap: 1em;
+      padding: 0;
+      margin: 0;
+      height:17em;
+  
+      > li {
+        list-style-type: none;
+        background-color:aliceblue;
+        border: 2px solid aliceblue;
+        border-radius: 2em;
+        height:15em;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+p{
+
+}
+

@@ -2,10 +2,7 @@
   font-family: "Quicksand", sans-serif;
 }
 
-body{
-  background-color:transparent;
-  /* background-image: var(--background); */
-}
+
 
 
 
@@ -13,6 +10,7 @@ body{
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     overscroll-behavior-x: contain;
+    width: 100vw;
     /* anchor-name: --carousel; */
     
     @media (prefers-reduced-motion: no-preference) {
@@ -29,44 +27,15 @@ body{
   /* SCROLL BUTTONS */
   /* create buttons by selecting them and adding content */
   .carousel {
-    &::scroll-button(*) {
-      /* make them round and easy to press */
-      inline-size: 48px;
-      aspect-ratio: 1;
-      border-radius: 1em;
-      background-color: aliceblue;
-      border: 2px solid rgb(145, 179, 235);
-      margin: 5px;
-    }
-    
-    &::scroll-button(*):focus-visible {
-      outline-offset: 5px;
-    }
-    
-    &::scroll-button(*):not(:disabled):is(:hover, :active) {
-      background-color: Canvas;
-    }
-    
-    &::scroll-button(*):not(:disabled):active {
-      scale: 90%;
-    }
-    
-    &::scroll-button(left) {
-      content: "⬅" / "Scroll Left";
-      color: rgb(59, 105, 158);
-      grid-area: left; /* place markers in parent grid area */
-    }
-    
-    &::scroll-button(right) {
-      content: "⮕" / "Scroll Right";
-      color: rgb(59, 105, 158);
-      grid-area: right;
-    }
+
+    scrollbar-width: none;
+
   }
 
 
     li {
       container-type: scroll-state;
+      height: 1em;
       
   
       > div {
@@ -93,6 +62,8 @@ body{
       place-content: start center;
       margin: 0;
       padding: 10vmin;
+
+      overflow: hidden;
     }
     
     .scroll-layout {
@@ -109,15 +80,23 @@ body{
         "left markers right";
       
       grid-template-columns: auto auto;
+
+      position: fixed;
+      bottom: 0;
+      left: 0;
   
       .carousel {
         grid-area: scroll;
+        overflow-x: hidden;
       }
     }
     
     .carousel {
       overscroll-behavior-x: contain;
       scroll-behavior: smooth;
+      overflow-y: hidden;
+      overflow-x: hidden;
+
     }
   
     .content {
@@ -126,7 +105,9 @@ body{
       gap: 1em;
       padding: 0;
       margin: 0;
-      height:17em;
+      height:13em;
+
+      scale: 85%;
   
       > li {
         list-style-type: none;
@@ -135,7 +116,7 @@ body{
         background-color:aliceblue;
         border: 2px solid aliceblue;
         border-radius: 2em;
-        height:13em;
+        height:11em;
         gap:1em;
         width:23em;
         display: flex;
@@ -162,7 +143,7 @@ section{
 
 
 img{
-  width:8em;
+  width:7em;
   border-radius: 1em;
   margin-left: 1em;
 }

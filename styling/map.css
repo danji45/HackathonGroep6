@@ -14,7 +14,12 @@ path {
     fill: var(--landinactive);
 }
 
-body {}
+body {
+
+    background-image: var(--background);
+    
+
+}
 
 .pinpoint {
     pointer-events: all;

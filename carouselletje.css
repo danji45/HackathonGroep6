@@ -3,7 +3,8 @@
 }
 
 body{
-  background-color:#497EC3;
+  background-color:transparent;
+  /* background-image: var(--background); */
 }
 
 
@@ -97,7 +98,7 @@ body{
     .scroll-layout {
       display: grid;
       
-      /* try a different layout =) */
+      /* try a different layout = */
       grid-template-areas: 
         "left scroll right"
         ". markers .";

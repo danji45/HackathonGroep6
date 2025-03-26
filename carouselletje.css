@@ -1,5 +1,10 @@
 *{
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Quicksand", sans-serif;
+}
+
+body{
+  background-color:transparent;
+  /* background-image: var(--background); */
 }
 
 
@@ -8,6 +13,7 @@
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     overscroll-behavior-x: contain;
+    /* anchor-name: --carousel; */
     
     @media (prefers-reduced-motion: no-preference) {
       scroll-behavior: smooth;
@@ -57,6 +63,23 @@
       grid-area: right;
     }
   }
+
+
+    li {
+      container-type: scroll-state;
+      
+  
+      > div {
+        @container not scroll-state(snapped: x){
+          interactivity: inert;
+          opacity: .6;
+          scale:88%;
+ 
+          
+        }
+      }
+    }
+  
   
   
   
@@ -75,7 +98,7 @@
     .scroll-layout {
       display: grid;
       
-      /* try a different layout =) */
+      /* try a different layout = */
       grid-template-areas: 
         "left scroll right"
         ". markers .";
@@ -107,12 +130,19 @@
   
       > li {
         list-style-type: none;
+        
+        div {
         background-color:aliceblue;
         border: 2px solid aliceblue;
         border-radius: 2em;
         height:13em;
+        gap:1em;
+        width:23em;
         display: flex;
         align-items: center;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+        opacity: 1;
+        }
       }
     }
   }
@@ -140,15 +170,21 @@ img{
 h2 {
   font-weight: bold;
   font-size: 20px;
-  margin-bottom:-0.2em;
+  margin-top:1.2em;
   width: 100%;
-  
 }
 
 p{
-  width:10em;
+  width:85%;
+  margin-top:-0.3em;
+  font-size: 14px;
 }
 
+p:nth-of-type(2){
+  font-size:1wpx;
+  width:15em;
+  color: rgb(108, 149, 185);
+}
 
 
 

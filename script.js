@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // svgPanZoom
     svgPanZoom('svg', {
         zoomEnabled: true,
-        controlIconsEnabled: true,
+        controlIconsEnabled: false,
         fit: true,
         center: true
     });

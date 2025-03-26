@@ -1,0 +1,49 @@
+/* .pinpoint {
+    position: absolute;
+    max-width: 2em;
+    z-index: 2;
+    opacity: 30%;
+} */
+
+:root {
+    --landinactive: #F5F4E7;
+    --landactive: #FFD0E1;
+}
+
+path {
+    fill: var(--landinactive);
+}
+
+body {}
+
+.pinpoint {
+    pointer-events: all;
+    cursor: pointer;
+    max-width: 2em;
+    height: 1em;
+
+    animation: fade-in 2s ease-in-out alternate infinite both;
+    animation-delay: calc(2s * (var(--sibling-index) / var(--sibling-count)));
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: scale(0);
+        }
+    }
+}
+
+.person-label img {
+    width: 100%;
+    max-width: 3em;
+    border-radius: 1em;
+}
+
+svg {
+    margin: auto;
+}
+
+g>img {
+    transition: opacity 0.3s ease;
+    transition-delay: calc(sibling-index() * 100ms);
+}

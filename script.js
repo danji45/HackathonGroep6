@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         Australia: { x: 840, y: 520 },
         Spain: { x: 457, y: 325 }
     };
-
+ 
     // svgPanZoom
     svgPanZoom('svg', {
         zoomEnabled: true,
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fit: true,
         center: true
     });
-
+ 
     // Haal data op van API
     fetch('https://fdnd.directus.app/items/women_in_tech')
         .then(response => response.json())
@@ -35,50 +35,50 @@ document.addEventListener('DOMContentLoaded', () => {
             const people = data.data;
             // const svg = document.querySelector('svg');
             const g = document.querySelector('svg>g');
-
+ 
             people.forEach(person => {
                 const countryName = person.country?.trim();
-
+ 
                 if (!countryName) {
                     console.warn(`Geen landnaam voor ${person.name}`);
                     return;
                 }
-
+ 
                 const position = countryPositions[countryName];
-
+ 
                 if (!position) {
                     console.warn(`Geen positie gevonden voor land: ${countryName}`);
                     return;
                 }
-
-
+ 
+ 
                 const path = document.querySelector(`path[id="${countryName}"]`);
-
+ 
                 if (path) {
                     console.log(`${person.name} gevonden in ${countryName}`);
                     path.style.fill = 'var(--landactive)'; // tijdelijk: highlight het land
-
-
+ 
+ 
                 } else {
-
-
+ 
+ 
                     console.warn(`${person.name} heeft land ${countryName}, maar geen match in SVG`);
-
-
+ 
+ 
                 }
-
-
+ 
+ 
                 // Maak een <image> pin aan
                 const pin = document.createElementNS('http://www.w3.org/2000/svg', 'image');
                 pin.setAttributeNS(null, 'href', '../photo/Pinpoint.png');
                 pin.setAttribute('x', position.x);
                 pin.setAttribute('y', position.y);
                 pin.classList.add('pinpoint');
-
+ 
                 g.appendChild(pin);
             });
-
-
+ 
+ 
         })
         .catch(error => {
             console.error('Fout bij ophalen van data:', error);

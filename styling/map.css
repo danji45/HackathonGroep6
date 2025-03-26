@@ -10,7 +10,7 @@
     --landactive: #FFD0E1;
 }
 
-path {
+svg>g>path {
     fill: var(--landinactive);
 }
 
@@ -19,6 +19,8 @@ body {
     background-image: var(--background);
     
 
+    padding: 0;
+    margin: 0;
 }
 
 .pinpoint {
@@ -38,6 +40,20 @@ body {
     }
 }
 
+#map-container {
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* 
+.svg-pan-zoom-control {
+    fill-opacity: 1 !important;
+} */
+
+
 .person-label img {
     width: 100%;
     max-width: 3em;
@@ -45,7 +61,11 @@ body {
 }
 
 svg {
-    margin: auto;
+    /* margin: auto; */
+    width: 100%;
+    height: 90vh;
+    display: block;
+    max-width: 1920px;
 }
 
 g>img {

@@ -30,19 +30,15 @@ body {
     cursor: pointer;
     max-width: 2em;
     height: 1em;
-    opacity: 1;
-    translate: 0 0;
 
-    transition:
-        opacity 3s ease,
-        translate 3s ease;
+    animation: fade-in 2s ease-in-out alternate infinite both;
+    animation-delay: calc(2s * (var(--sibling-index) / var(--sibling-count)));
 
-    transition-delay: calc((sibling-index() - 256) * 75ms);
-
-    @starting-style {
-        opacity: 0;
-        translate: 0 -500px;
-
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: scale(0);
+        }
     }
 }
 
@@ -59,9 +55,6 @@ body {
     fill-opacity: 1 !important;
 } */
 
-/* path {
-    border: 1px solid black;
-} */
 
 .person-label img {
     width: 100%;
@@ -77,7 +70,7 @@ svg {
     max-width: 1920px;
 }
 
-/* g>* {
+g>img {
     transition: opacity 0.3s ease;
     transition-delay: calc(sibling-index() * 100ms);
-} */
+}

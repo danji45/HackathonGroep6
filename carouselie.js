@@ -10,11 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 var persoon = `
 <li>
+<div>
 <img src="https://fdnd.directus.app/assets/${person.image}" />
 <section>
 <h2>${person.name}</h2>
 <p>${person.tagline}</p>
+<p>Comes from: ${person.country}</p>
 </section>
+</div>
 </li>
 
 `;

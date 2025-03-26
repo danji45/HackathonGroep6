@@ -4,7 +4,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f5f5f5;
+    background-color: white;
+    /* background-image: var(--background); */
     margin: 0;
 }
 
@@ -17,7 +18,7 @@ body {
     box-shadow: 0 4px 8px var(--schaduw);
     display: flex;
     flex-direction: column;
-    gap: 1.5em;
+    gap: .5em;
 }
 
 .profile-header {
@@ -30,7 +31,7 @@ body {
     width: 8em;
     height: 8em;
     border-radius: 50%;
-    overflow: hidden;
+
 }
 
 
@@ -61,5 +62,5 @@ img{
 }
 
 article{
-    gap: 1.5em;
+    margin-left: 1.5em; /* Adds space between articles */
 }

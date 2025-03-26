@@ -1,4 +1,7 @@
 :root{
     --kleur-card: rgb(214, 228, 237);
-    --schaduw: rgba(0,0,0,0.1)
+    --schaduw: rgba(0,0,0,0.1);
+
+
+    --background: radial-gradient(circle at 50% 50%, #1693f3, #77b9fa, #bcdcfe, #ffffff, #bcdcfe, #77b9fa, #1693f3);
 }

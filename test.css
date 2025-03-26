@@ -74,7 +74,7 @@ body {
     background-color: #f9f9f9;
 }
 
-.carousel-card:click {
+.carousel-card:hover {
     transform: rotateY(180deg);
 }
 

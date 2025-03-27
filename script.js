@@ -109,8 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 profileCard = `
                 <div class="profileCard"  data-name="${person.name}">
                     <header class="profile-header">
+                 <h1 id="naam">${person.name}</h1>
                         <img class="profile-image" src="https://fdnd.directus.app/assets/${person.image}" alt="Profielfoto">
-                        <h1 id="naam">${person.name}</h1>
+       
                     </header>
                     
                     <p id="tagline">Tagline: ${person.tagline}</p>

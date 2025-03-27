@@ -161,9 +161,12 @@ function showCard(obj) {
     allCards.forEach(card => {
         if (card.dataset.name === obj.dataset.name) {
             card.style.display = 'block';
+            card.classList.add('showanimatie')
             console.log('kaas');
         } else {
             card.style.display = 'none';
+            card.classList.remove('showanimatie')
+
             console.log('geen kaas');
         }
     });

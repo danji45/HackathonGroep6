@@ -33,57 +33,55 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             const people = data.data;
-            // const svg = document.querySelector('svg');
             const g = document.querySelector('svg>g');
  
+            // Unieke landen selecteren
+            const uniqueCountries = new Map();
             people.forEach(person => {
+                const countryName = person.country?.trim();
+                if (!countryName || uniqueCountries.has(countryName)) return;
+                uniqueCountries.set(countryName, person);
+            });
+ 
+            // Alleen één pin per uniek land
+            uniqueCountries.forEach(person => {
                 const countryName = person.country?.trim();
  
                 if (!countryName) {
-                    console.warn(`Geen landnaam voor ${person.name}`);
+                    console.log(`Geen landnaam voor ${person.name}`);
                     return;
                 }
  
                 const position = countryPositions[countryName];
  
                 if (!position) {
-                    console.warn(`Geen positie gevonden voor land: ${countryName}`);
+                    console.log(`Geen positie gevonden voor land: ${countryName}`);
                     return;
                 }
- 
  
                 const path = document.querySelector(`path[id="${countryName}"]`);
  
                 if (path) {
                     console.log(`${person.name} gevonden in ${countryName}`);
-                    path.style.fill = 'var(--landactive)'; // tijdelijk: highlight het land
- 
- 
+                    path.style.fill = 'var(--landactive)';
                 } else {
- 
- 
-                    console.warn(`${person.name} heeft land ${countryName}, maar geen match in SVG`);
- 
- 
+                    console.log(`${person.name} heeft land ${countryName}, maar geen match in SVG`);
                 }
  
- 
-                // Maak een <image> pin aan
                 const pin = document.createElementNS('http://www.w3.org/2000/svg', 'image');
-                pin.setAttributeNS(null, 'href', '../photo/Pinpoint.png');
+                pin.setAttributeNS(null, 'href', '../photo/pin-point.png');
                 pin.setAttribute('x', position.x);
                 pin.setAttribute('y', position.y);
                 pin.classList.add('pinpoint');
  
                 g.appendChild(pin);
             });
- 
- 
         })
         .catch(error => {
             console.error('Fout bij ophalen van data:', error);
         });
 });
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const carouselList = document.getElementById('carousel-list');

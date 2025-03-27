@@ -4,8 +4,6 @@
 
 
 
-
-
 .carousel {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -169,3 +167,4 @@ p:nth-of-type(2){
 
 
 
+  

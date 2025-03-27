@@ -1,149 +1,106 @@
-*{
+* {
   font-family: "Quicksand", sans-serif;
 }
 
-
-
-
-
 .carousel {
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    overscroll-behavior-x: contain;
-    width: 100vw;
-    /* anchor-name: --carousel; */
-    
-    @media (prefers-reduced-motion: no-preference) {
-      scroll-behavior: smooth;
-    }
-    
-    /* snap to center */  
-    & li {
-      scroll-snap-align: center;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  width: 100vw;
+  scrollbar-width: none;
+  
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
+  
+  & li {
+    scroll-snap-align: center;
+    cursor: pointer; /* Add cursor pointer to indicate interactivity */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for hover/click effects */
+  }
+}
+
+li {
+  container-type: scroll-state;
+  height: 1em;
+  list-style-type: none; /* Ensure no default list styling */
+  
+  > div {
+    @container not scroll-state(snapped: x){
+      interactivity: inert;
+      opacity: .6;
+      scale: 88%;
     }
   }
   
-  
-  /* SCROLL BUTTONS */
-  /* create buttons by selecting them and adding content */
-  .carousel {
-
-    scrollbar-width: none;
-
+  /* Button-like hover and active states */
+  &:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
   }
+  
+  &:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
 
-
-    li {
-      container-type: scroll-state;
-      height: 1em;
-      
+@layer support.demo {
+  .scroll-layout {
+    display: grid;
+    grid-template-areas: 
+      "scroll scroll scroll"
+      "left markers right";
+    grid-template-columns: auto auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
   
-      > div {
-        @container not scroll-state(snapped: x){
-          interactivity: inert;
-          opacity: .6;
-          scale:88%;
- 
-          
-        }
-      }
-    }
-  
-  
-  
-  
-  @layer support.demo {
-    html, body {
-      block-size: 100%;
-    }
-    
-    body {
-      display: grid;
-      place-content: start center;
-      margin: 0;
-      padding: 10vmin;
-
-      overflow: hidden;
-    }
-    
-    .scroll-layout {
-      display: grid;
-      
-      /* try a different layout = */
-      grid-template-areas: 
-        "left scroll right"
-        ". markers .";
-      
-      /* just place items in the grid */
-      grid-template-areas: 
-        "scroll scroll scroll"
-        "left markers right";
-      
-      grid-template-columns: auto auto;
-
-      position: fixed;
-      bottom: 0;
-      left: 0;
-  
-      .carousel {
-        grid-area: scroll;
-        overflow-x: hidden;
-      }
-    }
-    
     .carousel {
-      overscroll-behavior-x: contain;
-      scroll-behavior: smooth;
-      overflow-y: hidden;
+      grid-area: scroll;
       overflow-x: hidden;
-
     }
+  }
   
-    .content {
-      display: grid;
-      grid: 50vmin / auto-flow 50vmin;
-      gap: 1em;
-      padding: 0;
-      margin: 0;
-      height:13em;
-
-      scale: 85%;
-  
-      > li {
-        list-style-type: none;
-        
-        div {
-        background-color:aliceblue;
+  .content {
+    display: grid;
+    grid: 50vmin / auto-flow 50vmin;
+    gap: 1em;
+    padding: 0;
+    margin: 0;
+    height: 13em;
+    scale: 85%;
+    
+    > li {
+      div {
+        background-color: aliceblue;
         border: 2px solid aliceblue;
         border-radius: 2em;
-        height:11em;
-        gap:1em;
-        width:23em;
+        height: 11em;
+        gap: 1em;
+        width: 23em;
         display: flex;
         align-items: center;
         box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
         opacity: 1;
-        }
+        transition: all 0.3s ease; /* Smooth transition for interactive effects */
       }
     }
   }
-
-
-
-li{
-
-gap:0 1rem;
-
-section{
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
 }
 
+li {
+  gap: 0 1rem;
+  
+  section {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
 
-img{
-  width:7em;
+img {
+  width: 7em;
   border-radius: 1em;
   margin-left: 1em;
 }
@@ -151,21 +108,18 @@ img{
 h2 {
   font-weight: bold;
   font-size: 20px;
-  margin-top:1.2em;
+  margin-top: 1.2em;
   width: 100%;
 }
 
-p{
-  width:85%;
-  margin-top:-0.3em;
+p {
+  width: 85%;
+  margin-top: -0.3em;
   font-size: 14px;
 }
 
-p:nth-of-type(2){
-  font-size:1wpx;
-  width:15em;
+p:nth-of-type(2) {
+  font-size: 1wpx;
+  width: 15em;
   color: rgb(108, 149, 185);
 }
-
-
-
